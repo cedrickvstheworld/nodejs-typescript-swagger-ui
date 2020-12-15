@@ -1,0 +1,102 @@
+openapi: 3.0.0
+
+servers:
+  - url: http://localhost:8000/
+    description: Development Server
+
+info:
+  title: Swagger Typescript Demo
+  version: 1.0.0
+  description: API documentation for this madness
+  termsOfService: https:/www.terms-of-service.com
+  license:
+    name: Sample Licence
+    url: http://sample-license.url.com
+
+tags:
+  - name: Index
+    description: Some index API endpoints
+
+paths:
+  /:
+    post:
+      tags:
+        - Index
+      description: Sample Description for index Route
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/definitions/indexPostSchema"
+      responses:
+        '200':
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/success"
+        '400':
+          description: Failed Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/bad-request"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/error"
+    get:
+      tags:
+        - Index
+      description: Sample Description for index Route
+      responses:
+        '200':
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/success"
+        '400':
+          description: Failed Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/bad-request"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/error"
+
+definitions:
+  success:
+    type: object
+    properties:
+      message: 
+        type: string
+        example: "success"
+  bad-request:
+    type: object
+    properties:
+      message: 
+        type: string
+        example: "bad request"
+  error:
+    type: object
+    properties:
+      message: 
+        type: string
+        example: "internal server error"
+  indexPostSchema:
+    type: object
+    properties:
+      sample_field_1:
+        type: string
+        description: sample field 1
+      sample_field_2:
+        type: string
+        description: sample field 2
